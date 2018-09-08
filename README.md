@@ -1,5 +1,4 @@
-# Moving average filter for 0-360°
-Moving average buffer filter for Mbed and Arduino
+# Moving average filter for angles 0-360°
 
 # Mbed example
 ```cpp
