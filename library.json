@@ -13,10 +13,13 @@
       "email": "info@pavelslama.cz",
       "url": "https://github.com/pilotak"
   },
-  "dependencies": {
-    "MovingAverageFloat": "^1.0.0",
-    "lib-from-repo": "https://github.com/pilotak/MovingAverageFloat"
-  },
+  "dependencies":
+  [
+    {
+        "name": "MovingAverageFloat",
+        "version": "https://github.com/pilotak/MovingAverageFloat.git#0.0.1"
+    }
+  ],
   "version": "1.0.0",
   "frameworks": "arduino, mbed"
 }
