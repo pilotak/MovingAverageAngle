@@ -1,5 +1,7 @@
 # Moving average filter for angles 0-360°
 
+This library requires [MovingAverageFloat](https://github.com/pilotak/MovingAverageFloat) library.
+
 # Mbed example
 ```cpp
 #include "mbed.h"

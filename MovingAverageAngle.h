@@ -27,6 +27,7 @@ SOFTWARE.
 
 #if defined(__MBED__)
 #include "mbed.h"
+#include "MovingAverageFloat.h"
 #endif
 
 #include <math.h>
