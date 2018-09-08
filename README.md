@@ -1,8 +1,9 @@
 # Moving average filter for angles 0-360°
 [![Build Status](https://travis-ci.org/pilotak/MovingAverageAngle.svg?branch=master)](https://travis-ci.org/pilotak/MovingAverageAngle)
+
 This library requires [MovingAverageFloat](https://github.com/pilotak/MovingAverageFloat) library.
 
-# Mbed example
+## Mbed example
 ```cpp
 #include "mbed.h"
 #include "MovingAverageAngle.h"  // https://github.com/pilotak/MovingAverageAngle
@@ -20,7 +21,7 @@ int main() {
     return 0;
 }
 ```
-# Arduino example
+## Arduino example
 ```cpp
 #include "MovingAverageFloat.h"  // https://github.com/pilotak/MovingAverageFloat
 #include "MovingAverageAngle.h"  // https://github.com/pilotak/MovingAverageAngle
@@ -47,7 +48,7 @@ void loop(){
 }
 ```
 
-## Output
+### Output
 > result: 350.00
 > 
 > result: 357.37
