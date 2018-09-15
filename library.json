@@ -14,12 +14,10 @@
       "url": "https://github.com/pilotak"
   },
   "dependencies":
-  [
-    {
-        "name": "MovingAverageFloat",
-        "version": "https://github.com/pilotak/MovingAverageFloat.git#1.0.0"
-    }
-  ],
+  {
+      "name": "MovingAverageFloat",
+      "version": "^1.0.0"
+  },
   "version": "1.0.0",
   "frameworks": "arduino, mbed"
 }

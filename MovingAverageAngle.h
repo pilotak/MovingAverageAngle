@@ -27,10 +27,10 @@ SOFTWARE.
 
 #if defined(__MBED__)
 #include "mbed.h"
-#include "MovingAverageFloat.h"
 #endif
 
 #include <math.h>
+#include <MovingAverageFloat.h>
 
 #define PI 3.141592653589793238463
 

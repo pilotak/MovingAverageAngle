@@ -1,4 +1,3 @@
-#include "MovingAverageFloat.h"  // https://github.com/pilotak/MovingAverageFloat
 #include "MovingAverageAngle.h"  // https://github.com/pilotak/MovingAverageAngle
 
 // Buffer will be 4 samples long, it will take 4 * sizeof(float) = 16 bytes of RAM
