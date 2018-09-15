@@ -26,7 +26,7 @@ SOFTWARE.
 #define MOVINGAVERAGEANGLE_H
 
 #if defined(__MBED__)
-	#include "mbed.h"
+    #include "mbed.h"
 #endif
 
 #include <math.h>
@@ -37,26 +37,26 @@ SOFTWARE.
 template <uint8_t N>
 class MovingAverageAngle {
   public:
-	MovingAverageAngle();
-	virtual ~MovingAverageAngle(void);
+    MovingAverageAngle();
+    virtual ~MovingAverageAngle(void);
 
-	float add(float value);
-	float get();
-	void fill(float value);
-	void reset();
+    float add(float value);
+    float get();
+    void fill(float value);
+    void reset();
 
   private:
-	MovingAverageFloat <N> _filterSin;
-	MovingAverageFloat <N> _filterCos;
+    MovingAverageFloat <N> _filterSin;
+    MovingAverageFloat <N> _filterCos;
 
-	float toRadian(float value);
+    float toRadian(float value);
 
-	float _result;
+    float _result;
 };
 
 template <uint8_t N>
 MovingAverageAngle<N>::MovingAverageAngle() {
-	_result = 0;
+    _result = 0;
 }
 
 template <uint8_t N>
@@ -65,38 +65,38 @@ MovingAverageAngle<N>::~MovingAverageAngle(void) {
 
 template <uint8_t N>
 float MovingAverageAngle<N>::get() {
-	return _result;
+    return _result;
 }
 
 template <uint8_t N>
 float MovingAverageAngle<N>::add(float value) {
-	float radian = toRadian(value);
-	float deg = atan2(_filterSin.add(sin(radian)), _filterCos.add(cos(radian))) * (180.0 / PI);
+    float radian = toRadian(value);
+    float deg = atan2(_filterSin.add(sin(radian)), _filterCos.add(cos(radian))) * (180.0 / PI);
 
-	if (deg < 0) deg += 360.0;
+    if (deg < 0) deg += 360.0;
 
-	_result = deg;
+    _result = deg;
 
-	return _result;
+    return _result;
 }
 
 template <uint8_t N>
 void MovingAverageAngle<N>::fill(float value) {
-	float radian = toRadian(value);
+    float radian = toRadian(value);
 
-	_filterSin.fill(sin(radian));
-	_filterCos.fill(cos(radian));
+    _filterSin.fill(sin(radian));
+    _filterCos.fill(cos(radian));
 }
 
 template <uint8_t N>
 void MovingAverageAngle<N>::reset() {
-	_filterSin.reset();
-	_filterCos.reset();
+    _filterSin.reset();
+    _filterCos.reset();
 }
 
 template <uint8_t N>
 float MovingAverageAngle<N>::toRadian(float value) {
-	return 2.0 * PI * (value / 360.0);
+    return 2.0 * PI * (value / 360.0);
 }
 
 #endif
