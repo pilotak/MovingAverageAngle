@@ -1,19 +1,25 @@
 language: python
 python:
-    - "2.7"
+  - "2.7"
 
 sudo: false
 cache:
-    directories:
-        - "~/.platformio"
+  directories:
+    - "~/.platformio"
 
 env:
-    - PLATFORMIO_CI_SRC=examples/MovingAverageAngle
+  - PLATFORMIO_CI_SRC=examples/MovingAverageAngle
 
 install:
-    - pip install -U platformio
-    - platformio update
-    - platformio lib -g install 1383
+  - pip install -U platformio
+  - platformio update
+  - platformio lib -g install 1383
 
 script:
-    - platformio ci --lib="." --board=uno --board=zero --board=esp01_1m
+  - platformio ci --lib="." --board=uno --board=zero --board=esp01_1m
+
+
+notifications:
+  email:
+    on_success: change
+    on_failure: change
