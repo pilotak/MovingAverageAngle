@@ -32,7 +32,13 @@ SOFTWARE.
 #include <math.h>
 #include <MovingAverageFloat.h>
 
-#define PI 3.141592653589793238463
+#if !defined(DEG_TO_RAD)
+    #define DEG_TO_RAD 0.017453292519943295769236907684886
+#endif
+
+#if !defined(RAD_TO_DEG)
+    #define RAD_TO_DEG 57.295779513082320876798154814105
+#endif
 
 template <uint8_t N>
 class MovingAverageAngle {
@@ -71,7 +77,7 @@ float MovingAverageAngle<N>::get() {
 template <uint8_t N>
 float MovingAverageAngle<N>::add(float value) {
     float radian = toRadian(value);
-    float deg = atan2(_filterSin.add(sin(radian)), _filterCos.add(cos(radian))) * (180.0 / PI);
+    float deg = atan2(_filterSin.add(sin(radian)), _filterCos.add(cos(radian))) * RAD_TO_DEG;
 
     if (deg < 0) deg += 360.0;
 
@@ -96,7 +102,7 @@ void MovingAverageAngle<N>::reset() {
 
 template <uint8_t N>
 float MovingAverageAngle<N>::toRadian(float value) {
-    return 2.0 * PI * (value / 360.0);
+    return value * DEG_TO_RAD;
 }
 
 #endif
