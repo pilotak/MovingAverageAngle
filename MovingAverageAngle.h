@@ -30,7 +30,7 @@ SOFTWARE.
 #endif
 
 #include <math.h>
-#include <MovingAverageFloat.h>
+#include <MovingAverage.h>
 
 #if !defined(DEG_TO_RAD)
     #define DEG_TO_RAD 0.017453292519943295769236907684886
@@ -52,8 +52,8 @@ class MovingAverageAngle {
     void reset();
 
   private:
-    MovingAverageFloat <N> _filterSin;
-    MovingAverageFloat <N> _filterCos;
+    MovingAverage <int32_t, N> _filterSin;
+    MovingAverage <int32_t, N> _filterCos;
 
     float toRadian(float value);
 
@@ -77,9 +77,13 @@ float MovingAverageAngle<N>::get() {
 template <uint8_t N>
 float MovingAverageAngle<N>::add(float value) {
     float radian = toRadian(value);
-    float deg = atan2(_filterSin.add(sin(radian)), _filterCos.add(cos(radian))) * RAD_TO_DEG;
+    double s = static_cast<double>(_filterSin.add(static_cast<int32_t>(sin(radian) * 10000000))) / 10000000.0;
+    double c = static_cast<double>(_filterCos.add(static_cast<int32_t>(cos(radian) * 10000000))) / 10000000.0;
+    float deg = atan2(s, c) * RAD_TO_DEG;
 
     if (deg < 0) deg += 360.0;
+
+    if (deg >= 360.0) deg = 0.0;
 
     _result = deg;
 
@@ -90,8 +94,8 @@ template <uint8_t N>
 void MovingAverageAngle<N>::fill(float value) {
     float radian = toRadian(value);
 
-    _filterSin.fill(sin(radian));
-    _filterCos.fill(cos(radian));
+    _filterSin.fill(static_cast<int32_t>(sin(radian) * 10000000));
+    _filterCos.fill(static_cast<int32_t>(cos(radian) * 10000000));
 }
 
 template <uint8_t N>
