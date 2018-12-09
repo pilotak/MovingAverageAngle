@@ -1,7 +1,7 @@
 # Moving average filter for angles 0-360°
 [![Build Status](https://travis-ci.org/pilotak/MovingAverageAngle.svg?branch=master)](https://travis-ci.org/pilotak/MovingAverageAngle)
 
-This library requires [MovingAverageFloat](https://github.com/pilotak/MovingAverageFloat) library.
+This library requires [MovingAverage](https://github.com/pilotak/MovingAverage) library.
 
 ## Mbed example
 ```cpp
