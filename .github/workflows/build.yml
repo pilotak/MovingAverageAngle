@@ -27,6 +27,7 @@ jobs:
 
       - name: Compile
         run: |
+          pio lib install https://github.com/pilotak/MovingAverage
           pio ci --lib="." --board=uno --board=zero --board=attiny85 --board=esp8285 --board=esp32dev --board=bluepill_f103c8
         env:
           PLATFORMIO_CI_SRC: examples/basic
@@ -94,8 +95,7 @@ jobs:
         run: |
           arduino-cli core update-index
           arduino-cli core install ${{ matrix.platform }}
-          arduino-cli --enable_unsafe_install=true
-          arduino-cli lib install --git-url https://github.com/pilotak/MovingAverage
+          arduino-cli lib install --enable_unsafe_install=true --git-url https://github.com/pilotak/MovingAverage
         env:
           ARDUINO_BOARD_MANAGER_ADDITIONAL_URLS: ${{ matrix.url }}
 
