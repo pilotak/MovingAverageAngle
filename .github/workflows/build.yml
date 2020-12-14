@@ -95,9 +95,10 @@ jobs:
         run: |
           arduino-cli core update-index
           arduino-cli core install ${{ matrix.platform }}
-          arduino-cli lib install --enable_unsafe_install=true --git-url https://github.com/pilotak/MovingAverage
+          arduino-cli lib install --git-url https://github.com/pilotak/MovingAverage
         env:
           ARDUINO_BOARD_MANAGER_ADDITIONAL_URLS: ${{ matrix.url }}
+          ARDUINO_ENABLE_UNSAFE_LIBRARY_INSTALL: true
 
       - name: Compile
         run: arduino-cli compile --fqbn ${{ matrix.fqbn }} ./examples/basic
