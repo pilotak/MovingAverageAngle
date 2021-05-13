@@ -12,10 +12,11 @@
     "url": "https://github.com/pilotak"
   },
   "dependencies": {
-    "name": "pilotak/MovingAverage",
+    "owner": "pilotak",
+    "name": "MovingAverage",
     "version": "^1.0.3"
   },
-  "version": "1.0.4",
+  "version": "1.0.5",
   "frameworks": "arduino, mbed",
   "platforms": "*"
 }
