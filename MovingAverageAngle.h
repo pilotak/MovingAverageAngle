@@ -46,18 +46,18 @@ class MovingAverageAngle {
     MovingAverageAngle();
     virtual ~MovingAverageAngle(void);
 
-    float add(float value);
-    float get();
-    void fill(float value);
+    double add(double value);
+    double get();
+    void fill(double value);
     void reset();
 
   private:
     MovingAverage <int32_t, N> _filterSin;
     MovingAverage <int32_t, N> _filterCos;
 
-    float toRadian(float value);
+    double toRadian(double value);
 
-    float _result;
+    double _result;
 };
 
 template <uint8_t N>
@@ -70,16 +70,16 @@ MovingAverageAngle<N>::~MovingAverageAngle(void) {
 }
 
 template <uint8_t N>
-float MovingAverageAngle<N>::get() {
+double MovingAverageAngle<N>::get() {
     return _result;
 }
 
 template <uint8_t N>
-float MovingAverageAngle<N>::add(float value) {
-    float radian = toRadian(value);
+double MovingAverageAngle<N>::add(double value) {
+    double radian = toRadian(value);
     double s = static_cast<double>(_filterSin.add(static_cast<int32_t>(sin(radian) * 10000000))) / 10000000.0;
     double c = static_cast<double>(_filterCos.add(static_cast<int32_t>(cos(radian) * 10000000))) / 10000000.0;
-    float deg = atan2(s, c) * RAD_TO_DEG;
+    double deg = atan2(s, c) * RAD_TO_DEG;
 
     if (deg < 0) deg += 360.0;
 
@@ -91,8 +91,8 @@ float MovingAverageAngle<N>::add(float value) {
 }
 
 template <uint8_t N>
-void MovingAverageAngle<N>::fill(float value) {
-    float radian = toRadian(value);
+void MovingAverageAngle<N>::fill(double value) {
+    double radian = toRadian(value);
 
     _filterSin.fill(static_cast<int32_t>(sin(radian) * 10000000));
     _filterCos.fill(static_cast<int32_t>(cos(radian) * 10000000));
@@ -105,7 +105,7 @@ void MovingAverageAngle<N>::reset() {
 }
 
 template <uint8_t N>
-float MovingAverageAngle<N>::toRadian(float value) {
+double MovingAverageAngle<N>::toRadian(double value) {
     return value * DEG_TO_RAD;
 }
 
